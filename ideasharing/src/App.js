@@ -1,17 +1,20 @@
 import "./App.css";
+import { Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
 import { NavigBar } from "./components/NavigBar";
-import { BackPic } from "./components/BackPic";
-import { BodyInfo } from "./components/BodyInfo";
-import { SiteFeatures } from "./components/SiteFeatures";
 
 function App() {
   return (
     <div className="App">
-      <BackPic />
       <NavigBar />
-      <BodyInfo />
-      <SiteFeatures />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/registration" component={Registration} />
+      </Switch>
     </div>
   );
 }

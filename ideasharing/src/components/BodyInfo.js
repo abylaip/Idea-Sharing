@@ -1,5 +1,5 @@
 import React from "react";
-import "../cssFiles/BodyInfo.css";
+import "../assets/css//BodyInfo.css";
 
 export function BodyInfo() {
   return (

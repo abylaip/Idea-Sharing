@@ -1,5 +1,5 @@
 import React from "react";
-import "../cssFiles/BackPic.css";
+import "../assets/css/BackPic.css";
 
 export function BackPic() {
   return (

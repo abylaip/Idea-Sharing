@@ -2,7 +2,7 @@ import React from "react";
 import gray from "../assets/gray.png";
 import yellow from "../assets/yellow.png";
 import green from "../assets/green.png";
-import "../cssFiles/SiteFeatures.css";
+import "../assets/css//SiteFeatures.css";
 import { Link } from "react-router-dom";
 
 export function SiteFeatures() {
