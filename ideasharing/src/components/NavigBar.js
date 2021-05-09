@@ -1,24 +1,14 @@
 import React from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
+import "../cssFiles/NavigBar.css";
+import { Link, Redirect } from "react-router-dom";
 
 export function NavigBar() {
+  function handleLogin() {
+    return <Redirect to="/login" />;
+  }
   return (
-    <>
-      <style type="text/css">
-        {`
-            .btn-primary {
-                background-color: #2D3436;
-                color: white;
-                border: none;
-                border-radius: 999px;
-                width: 100px;
-            }
-            .btn-primary:hover {
-                background-color: white;
-                color: #2D3436;
-            }
-        `}
-      </style>
+    <div className="NavigBar">
       <Navbar bg="light" variant="light">
         <Navbar.Brand href="#home">IS - Idea Sharing</Navbar.Brand>
         <Nav className="mr-auto">
@@ -28,9 +18,11 @@ export function NavigBar() {
           <Nav.Link href="#pricing">Contact us</Nav.Link>
         </Nav>
         <Nav>
-          <Button variant="primary">Sign in</Button>
+          <Button variant="primary" onClick={handleLogin}>
+            Sign in
+          </Button>
         </Nav>
       </Navbar>
-    </>
+    </div>
   );
 }

@@ -1,0 +1,118 @@
+.featName {
+  position: absolute;
+  height: 155px;
+  left: 30%;
+  right: 30.42%;
+  top: 1200px;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 77px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -1px;
+
+  color: #2d3436;
+}
+.message_1 {
+  position: absolute;
+  height: 40px;
+  left: 30.21%;
+  right: 30.21%;
+  top: 1350px;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 48px;
+
+  color: #adadad;
+}
+
+.accTitles {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 32px;
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.2px;
+
+  color: #6c5ce7;
+}
+.flex-container {
+  position: absolute;
+  top: 1440px;
+  display: flex;
+  flex-direction: row;
+  margin-left: 120px;
+  margin-right: 120px;
+}
+.devs {
+  display: flex;
+  flex-direction: column;
+  margin-right: 150px;
+}
+.enters {
+  display: flex;
+  flex-direction: column;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+.teams {
+  margin-left: 150px;
+  display: flex;
+  flex-direction: column;
+}
+img {
+  height: 25px;
+  width: 25px;
+}
+.inner {
+  display: flex;
+  flex-direction: row;
+}
+.withBorder {
+  border: 1px solid #adadad;
+  box-sizing: border-box;
+  border-radius: 16px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 36px;
+
+  text-align: center;
+  letter-spacing: 0.2px;
+
+  color: #6c5ce7;
+}
+.withoutBorder {
+  background: #6c5ce7;
+  border-radius: 16px;
+  border: none;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+
+  text-align: center;
+  letter-spacing: 0.25px;
+
+  color: #ffffff;
+}
+.withBorder:hover {
+  background: #6c5ce7;
+  color: #ffffff;
+}
+.withoutBorder:hover {
+  background: #f3f3f3;
+  color: #6c5ce7;
+}
