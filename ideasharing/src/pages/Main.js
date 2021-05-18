@@ -1,43 +1,64 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "../assets/css/Main.css";
+import Profile from "./Profile";
+import Settings from "./Settings";
+import Ideas from "./Ideas";
+
+const routes = [
+  {
+    path: "/profile",
+    main: Profile,
+  },
+  {
+    path: "/main",
+    exact: true,
+    main: Ideas,
+  },
+  {
+    path: "/settings",
+    main: Settings,
+  },
+];
 
 export default function Main() {
   return (
     <Router>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", marginLeft: 100, marginRight: 100 }}>
         <div
           style={{
             padding: "10px",
-            width: "40%",
-            background: "#f0f0f0",
+            width: "15%",
+            background: "white",
           }}
         >
-          <ul style={{ listStyleType: "none", padding: 0 }}>
+          <ul
+            style={{
+              listStyleType: "none",
+              padding: 0,
+              textAlign: "left",
+            }}
+          >
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/profile" style={{ color: "black" }}>
+                Profile
+              </Link>
             </li>
             <li>
-              <Link to="/bubblegum">Bubblegum</Link>
+              <Link to="/main" style={{ color: "black" }}>
+                Ideas
+              </Link>
             </li>
             <li>
-              <Link to="/shoelaces">Shoelaces</Link>
+              <Link to="/settings" style={{ color: "black" }}>
+                Settings
+              </Link>
             </li>
           </ul>
 
           <Switch>
             {routes.map((route, index) => (
-              // You can render a <Route> in as many places
-              // as you want in your app. It will render along
-              // with any other <Route>s that also match the URL.
-              // So, a sidebar or breadcrumbs or anything else
-              // that requires you to render multiple things
-              // in multiple places at the same URL is nothing
-              // more than multiple <Route>s.
-              <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                children={<route.sidebar />}
-              />
+              <Route key={index} path={route.path} exact={route.exact} />
             ))}
           </Switch>
         </div>
@@ -45,8 +66,6 @@ export default function Main() {
         <div style={{ flex: 1, padding: "10px" }}>
           <Switch>
             {routes.map((route, index) => (
-              // Render more <Route>s with the same paths as
-              // above, but different components this time.
               <Route
                 key={index}
                 path={route.path}

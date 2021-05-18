@@ -6,7 +6,6 @@
 .loginForm {
   margin-top: 100px;
   padding-top: 20px;
-  border: 1px solid black;
   width: 500px;
   height: 400px;
   border-radius: 5px;
@@ -15,12 +14,16 @@ input {
   width: 400px;
   height: 40px;
   margin-top: 20px;
-  border-color: 1px solid gray;
+  border: none;
+  border-bottom: 1px solid black;
+}
+button {
+  color: white;
 }
 .login-button {
   width: 400px;
   height: 40px;
   border: none;
-  background-color: powderblue;
+  background-color: #2d3436;
   border-radius: 3px;
 }

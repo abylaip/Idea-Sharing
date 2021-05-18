@@ -3,6 +3,9 @@ import "../assets/css/Login.css";
 import { Link } from "react-router-dom";
 
 export default function Login() {
+  function handleLoggedIn() {
+    localStorage.setItem("loggedIn", true);
+  }
   return (
     <div className="login">
       <div className="loginForm">
@@ -12,9 +15,15 @@ export default function Login() {
         <input type="password" placeholder="Enter password" />
         <br />
         <br />
-        <button type="submit" className="login-button">
-          Sign in
-        </button>
+        <Link to="/main">
+          <button
+            type="submit"
+            className="login-button"
+            onClick={handleLoggedIn}
+          >
+            Sign in
+          </button>
+        </Link>
         <br />
         <Link to="/registration">
           <a>Forgot password?</a>

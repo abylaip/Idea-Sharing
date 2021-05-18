@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
+import Main from "./pages/Main";
 import { NavigBar } from "./components/NavigBar";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/registration" component={Registration} />
+        <Route path="/main" component={Main} />
       </Switch>
     </div>
   );
