@@ -3,6 +3,7 @@ import gray from "../assets/gray.png";
 import yellow from "../assets/yellow.png";
 import green from "../assets/green.png";
 import "../assets/css//SiteFeatures.css";
+import "../assets/css/Footer.css";
 import { Link } from "react-router-dom";
 
 export function SiteFeatures() {
@@ -80,6 +81,21 @@ export function SiteFeatures() {
             <Link to="/registration">
               <button className="withBorder">Register</button>
             </Link>
+          </div>
+        </div>
+      </div>
+      <div className="footer-body">
+        <div className="footer-in">
+          <p className="footer-info">INFORMATION</p>
+          <p className="footer-about">About Idea Sharing App</p>
+          <p className="footer-get">Get in touch</p>
+          <p className="footer-like">Things we like</p>
+          <p className="footer-follow">FOLLOW US</p>
+          <p className="footer-email">inbox@ideasharing.kz</p>
+          <div className="footer-space">
+            <p className="copyright">
+              Copyright © 2021 • Idea Sharing. All rights reserved
+            </p>
           </div>
         </div>
       </div>

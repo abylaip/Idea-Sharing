@@ -29,7 +29,6 @@ export default function Main() {
           style={{
             padding: "10px",
             width: "15%",
-            background: "white",
           }}
         >
           <ul

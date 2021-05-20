@@ -26,7 +26,7 @@ export default function Login() {
         </Link>
         <br />
         <Link to="/registration">
-          <a>Forgot password?</a>
+          <a>I don't have an account</a>
         </Link>
       </div>
     </div>

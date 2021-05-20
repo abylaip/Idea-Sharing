@@ -21,12 +21,7 @@ export function NavigBar() {
         <Link to="/">
           <Navbar.Brand href="#home">IS - Idea Sharing</Navbar.Brand>
         </Link>
-        <Nav className="mr-auto">
-          {/* <Nav.Link href="#home">How it works</Nav.Link>
-          <Nav.Link href="#features">Who we are</Nav.Link>
-          <Nav.Link href="#pricing">What we do</Nav.Link>
-          <Nav.Link href="#pricing">Contact us</Nav.Link> */}
-        </Nav>
+        <Nav className="mr-auto"></Nav>
         <Nav>{show()}</Nav>
       </Navbar>
     </div>

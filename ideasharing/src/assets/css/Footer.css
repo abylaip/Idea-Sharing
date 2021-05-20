@@ -1,0 +1,158 @@
+.footer-info {
+  position: absolute;
+  top: 1800px;
+  height: 24px;
+  left: 10%;
+  right: 51.28%;
+  bottom: 174px;
+
+  /* 12 sp • MINICAPS */
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+
+  /* 32% Gray Light */
+  color: #adadad;
+}
+.footer-about {
+  position: absolute;
+  top: 1820px;
+  height: 24px;
+  left: 10%;
+  right: 75.47%;
+  bottom: 134px;
+
+  /* 14 sp • Paragraph Small */
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.25px;
+
+  /* Black */
+
+  color: #2d3436;
+}
+.footer-get {
+  position: absolute;
+  top: 1840px;
+  height: 24px;
+  left: 10%;
+  right: 75.47%;
+  bottom: 94px;
+
+  /* 14 sp • Paragraph Small */
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.25px;
+
+  /* Black */
+
+  color: #2d3436;
+}
+.footer-like {
+  position: absolute;
+  top: 1860px;
+  height: 24px;
+  left: 10%;
+  right: 75.47%;
+  bottom: 54px;
+
+  /* 14 sp • Paragraph Small */
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.25px;
+
+  /* Black */
+
+  color: #2d3436;
+}
+.footer-follow {
+  position: absolute;
+  top: 1800px;
+  height: 24px;
+  left: 51.28%;
+  right: 0%;
+
+  /* 12 sp • MINICAPS */
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+
+  /* 32% Gray Light */
+
+  color: #adadad;
+}
+.footer-email {
+  position: absolute;
+  top: 1840px;
+  height: 40px;
+  left: 51.28%;
+  right: 0%;
+
+  /* 32 sp • H4 Heading */
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 48px;
+  /* or 150% */
+
+  display: flex;
+  align-items: flex-end;
+  letter-spacing: -0.5px;
+
+  /* Purple / Dark */
+
+  color: #6c5ce7;
+}
+.footer-space {
+  position: absolute;
+  top: 1880px;
+  left: 0%;
+  right: 0%;
+
+  height: 100px;
+}
+.copyright {
+  position: absolute;
+  left: 37%;
+  bottom: 0%;
+}
