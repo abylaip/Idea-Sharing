@@ -1,6 +1,25 @@
+.footer-body {
+  position: relative;
+  width: 1440px;
+  height: 250px;
+  left: 0px;
+  top: 1800px;
+
+  /* White */
+
+  background: #ffffff;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 3;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 0px 0px;
+}
 .footer-info {
   position: absolute;
-  top: 1800px;
+  top: 50px;
   height: 24px;
   left: 10%;
   right: 51.28%;
@@ -23,7 +42,7 @@
 }
 .footer-about {
   position: absolute;
-  top: 1820px;
+  top: 90px;
   height: 24px;
   left: 10%;
   right: 75.47%;
@@ -48,7 +67,7 @@
 }
 .footer-get {
   position: absolute;
-  top: 1840px;
+  top: 110px;
   height: 24px;
   left: 10%;
   right: 75.47%;
@@ -73,7 +92,7 @@
 }
 .footer-like {
   position: absolute;
-  top: 1860px;
+  top: 130px;
   height: 24px;
   left: 10%;
   right: 75.47%;
@@ -98,7 +117,7 @@
 }
 .footer-follow {
   position: absolute;
-  top: 1800px;
+  top: 50px;
   height: 24px;
   left: 51.28%;
   right: 0%;
@@ -121,7 +140,7 @@
 }
 .footer-email {
   position: absolute;
-  top: 1840px;
+  top: 90px;
   height: 40px;
   left: 51.28%;
   right: 0%;
@@ -145,7 +164,7 @@
 }
 .footer-space {
   position: absolute;
-  top: 1880px;
+  top: 100px;
   left: 0%;
   right: 0%;
 
@@ -153,6 +172,7 @@
 }
 .copyright {
   position: absolute;
+  top: 120px;
   left: 37%;
   bottom: 0%;
 }
