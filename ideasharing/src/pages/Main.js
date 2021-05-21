@@ -4,6 +4,9 @@ import "../assets/css/Main.css";
 import Profile from "./Profile";
 import Settings from "./Settings";
 import Ideas from "./Ideas";
+import ProfileIcon from "../assets/profile.png";
+import IdeasIcon from "../assets/ideas.png";
+import SettingsIcon from "../assets/settings.png";
 
 const routes = [
   {
@@ -40,16 +43,33 @@ export default function Main() {
           >
             <li>
               <Link to="/profile" style={{ color: "black" }}>
+                <img
+                  src={ProfileIcon}
+                  alt="profile"
+                  style={{ height: 15, width: 15 }}
+                />
                 Profile
               </Link>
             </li>
+            <br />
             <li>
               <Link to="/main" style={{ color: "black" }}>
+                <img
+                  src={IdeasIcon}
+                  alt="ideas"
+                  style={{ height: 15, width: 15 }}
+                />
                 Ideas
               </Link>
             </li>
+            <br />
             <li>
               <Link to="/settings" style={{ color: "black" }}>
+                <img
+                  src={SettingsIcon}
+                  alt="settings"
+                  style={{ height: 15, width: 15 }}
+                />
                 Settings
               </Link>
             </li>

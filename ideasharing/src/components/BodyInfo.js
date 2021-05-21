@@ -1,5 +1,7 @@
 import React from "react";
 import "../assets/css//BodyInfo.css";
+import image_one from "../assets/a1.jpg";
+import image_two from "../assets/a2.jpg";
 
 export function BodyInfo() {
   return (
@@ -11,6 +13,8 @@ export function BodyInfo() {
           On this website you can share your ideas, find new people that have
           similar interests
         </text>
+        <img src={image_one} alt="first image" className="image_one" />
+        <img src={image_two} alt="second image" className="image_two" />
         <div className="r2">
           <text className="t2">
             Our aim is to create a huge platform for software developers,

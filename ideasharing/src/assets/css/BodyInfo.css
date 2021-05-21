@@ -91,3 +91,19 @@
   line-height: 32px;
   color: #2d3436;
 }
+.image_one {
+  position: absolute;
+  top: 450px;
+  right: 520px;
+  width: 470px;
+  height: 380px;
+  border-radius: 20px;
+}
+.image_two {
+  position: absolute;
+  top: 640px;
+  right: 140px;
+  width: 340px;
+  height: 356px;
+  border-radius: 20px;
+}
