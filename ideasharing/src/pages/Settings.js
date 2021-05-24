@@ -1,11 +1,11 @@
 import React from "react";
+import "../assets/css/Settings.css";
 
 export default function Settings() {
   return (
     <div className="settings-body">
       <div className="row justify-content-center">
         <div className="col-12 col-lg-10 col-xl-8 mx-auto">
-          <h2 className="h3 mb-4 page-title">Settings</h2>
           <div className="my-4">
             <ul className="nav nav-tabs mb-4" id="myTab" role="tablist">
               <li className="nav-item">
@@ -23,64 +23,40 @@ export default function Settings() {
               </li>
             </ul>
             <form>
-              <div className="row mt-5 align-items-center">
-                <div className="col-md-3 text-center mb-5">
-                  <div className="avatar avatar-xl">
-                    <img
-                      src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                      alt="..."
-                      className="avatar-img rounded-circle"
-                    />
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="row align-items-center">
-                    <div className="col-md-7">
-                      <h4 className="mb-1">Abylay, Aiyp</h4>
-                      <p className="small mb-3">
-                        <span className="badge badge-dark">New York, USA</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="row mb-4">
-                    <div className="col-md-7">
-                      <p className="text-muted">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Mauris blandit nisl ullamcorper, rutrum metus in, congue
-                        lectus. In hac habitasse platea dictumst. Cras urna
-                        quam, malesuada vitae risus at, pretium blandit sapien.
-                      </p>
-                    </div>
-                    <div className="col">
-                      <p className="small mb-0 text-muted">
-                        Nec Urna Suscipit Ltd
-                      </p>
-                      <p className="small mb-0 text-muted">
-                        P.O. Box 464, 5975 Eget Avenue
-                      </p>
-                      <p className="small mb-0 text-muted">(537) 315-1481</p>
-                    </div>
-                  </div>
-                </div>
+              <div className="avatar-top row">
+                <img
+                  src="https://bootdey.com/img/Content/avatar/avatar5.png"
+                  alt="avatar"
+                  className="avatar-img"
+                />
+
+                <input
+                  type="file"
+                  id="avatar-img"
+                  name="avatar-img"
+                  accept="image/png, image/jpeg"
+                  style={{ border: "none" }}
+                  className="col-md-12"
+                ></input>
               </div>
               <hr className="my-4" />
               <div className="form-row">
-                <div className="form-group col-md-6">
-                  <label for="firstname">Firstname</label>
+                <div className="form-group col-md-12">
+                  <label for="fullname">Full name</label>
                   <input
                     type="text"
-                    id="firstname"
-                    className="form-control"
-                    placeholder="Abylay"
+                    id="fullname"
+                    className="input-form-control"
+                    placeholder="Abylay Aiyp"
                   />
                 </div>
-                <div className="form-group col-md-6">
-                  <label for="lastname">Lastname</label>
+                <div className="form-group col-md-12">
+                  <label for="lastname">Education</label>
                   <input
                     type="text"
-                    id="lastname"
-                    className="form-control"
-                    placeholder="Aiyp"
+                    id="education"
+                    className="input-form-control"
+                    placeholder="MIT"
                   />
                 </div>
               </div>
@@ -88,45 +64,38 @@ export default function Settings() {
                 <label for="inputEmail4">Email</label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="input-form-control"
                   id="inputEmail4"
                   placeholder="Abylay@Aiyp.me"
                 />
               </div>
               <div className="form-group">
-                <label for="inputAddress5">Address</label>
+                <label for="location">Location</label>
                 <input
                   type="text"
-                  className="form-control"
-                  id="inputAddress5"
-                  placeholder="P.O. Box 464, 5975 Eget Avenue"
+                  className="input-form-control"
+                  id="location"
+                  placeholder="Almaty, Kazakhstan"
                 />
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label for="inputCompany5">Company</label>
+                  <label for="skills">Skills</label>
                   <input
                     type="text"
-                    className="form-control"
-                    id="inputCompany5"
-                    placeholder="Nec Urna Suscipit Ltd"
+                    className="input-form-control"
+                    id="skills"
+                    placeholder="Full-Stack Developer"
                   />
                 </div>
-                <div className="form-group col-md-4">
-                  <label for="inputState5">State</label>
-                  <select id="inputState5" className="form-control">
+                <div className="form-group col-md-6">
+                  <label for="position">Position</label>
+                  <select id="position" className="input-form-control">
                     <option selected="">Choose...</option>
-                    <option>...</option>
+                    <option>Software Engineer</option>
+                    <option>Enterpreneur</option>
+                    <option>Team</option>
                   </select>
-                </div>
-                <div className="form-group col-md-2">
-                  <label for="inputZip5">Zip</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="inputZip5"
-                    placeholder="98232"
-                  />
                 </div>
               </div>
               <hr className="my-4" />
@@ -136,7 +105,7 @@ export default function Settings() {
                     <label for="inputPassword4">Old Password</label>
                     <input
                       type="password"
-                      className="form-control"
+                      className="input-form-control"
                       id="inputPassword5"
                     />
                   </div>
@@ -144,7 +113,7 @@ export default function Settings() {
                     <label for="inputPassword5">New Password</label>
                     <input
                       type="password"
-                      className="form-control"
+                      className="input-form-control"
                       id="inputPassword5"
                     />
                   </div>
@@ -152,7 +121,7 @@ export default function Settings() {
                     <label for="inputPassword6">Confirm Password</label>
                     <input
                       type="password"
-                      className="form-control"
+                      className="input-form-control"
                       id="inputPassword6"
                     />
                   </div>
@@ -171,9 +140,7 @@ export default function Settings() {
                   </ul>
                 </div>
               </div>
-              <button type="submit" className="btn btn-access">
-                Save Change
-              </button>
+              <button className="save-button">Save Change</button>
             </form>
           </div>
         </div>

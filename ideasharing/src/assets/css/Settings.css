@@ -1,19 +1,12 @@
 .settings-body {
   color: #8e9194;
-  background-color: #f4f6f9;
-  text-align: left;
+  background-color: #ffffff;
+  border-radius: 10px;
 }
-.avatar-xl img {
-  width: 110px;
-}
-.rounded-circle {
-  border-radius: 50% !important;
-}
-img {
-  vertical-align: middle;
-  border-style: none;
-  height: 100px;
-  width: 100px;
+.avatar-img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
 }
 .text-muted {
   color: #aeb0b4 !important;
@@ -21,8 +14,9 @@ img {
 .text-muted {
   font-weight: 300;
 }
-.form-control {
+.input-form-control {
   display: block;
+  margin-top: 5px;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
@@ -36,6 +30,9 @@ img {
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-.btn {
+.save-button {
+  border: none;
+  height: 40px;
+  border-radius: 5px;
   background-color: teal;
 }
