@@ -30,23 +30,50 @@ export default function Profile() {
           </Link>
         </div>
         <div className="profile-right">
-          <h3>Abylay Aiyp</h3>
-          <div className="personal-info-each">
-            <p>Education: </p>
-            <p>Massachusets Institute of Technology</p>
-          </div>
-          <div className="personal-info-each">
-            <p>Location: </p>
-            <p>Kazakhstan, Almaty</p>
-          </div>
-          <div className="personal-info-each">
-            <p>Position: </p>
-            <p>Software Developer</p>
-          </div>
-          <div className="personal-info-each">
-            <p>Skills: </p>
-            <p>Full-stack developer</p>
-          </div>
+          <table>
+            <tr>
+              <td>
+                <p className="profile-right-non-main">Fullname:</p>
+              </td>
+              <td>
+                <p className="profile-right-main">Abylay Aiyp</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p className="profile-right-non-main">Education: </p>
+              </td>
+              <td>
+                <p className="profile-right-main">
+                  Massachusets Institute of Technology
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p className="profile-right-non-main">Location: </p>
+              </td>
+              <td>
+                <p className="profile-right-main">Kazakhstan, Almaty</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p className="profile-right-non-main">Position: </p>
+              </td>
+              <td>
+                <p className="profile-right-main">Software Developer</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p className="profile-right-non-main">Skills: </p>
+              </td>
+              <td>
+                <p className="profile-right-main">Full-stack developer</p>
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
       <div className="profile-create-ideas">

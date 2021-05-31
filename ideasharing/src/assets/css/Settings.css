@@ -32,7 +32,8 @@
 }
 .save-button {
   border: none;
-  height: 40px;
+  height: 45px;
+  width: 200px;
   border-radius: 5px;
-  background-color: teal;
+  background-color: #2c2c2c;
 }

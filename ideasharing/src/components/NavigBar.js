@@ -3,18 +3,7 @@ import { Navbar, Nav, Button } from "react-bootstrap";
 import "../assets/css//NavigBar.css";
 import { Link } from "react-router-dom";
 
-export function NavigBar() {
-  function show() {
-    console.log("asdasd");
-    if (localStorage.getItem("loggedIn") === true) {
-      return <p>asdasdasd</p>;
-    }
-    return (
-      <Link to="/login">
-        <Button variant="primary">Sign in</Button>
-      </Link>
-    );
-  }
+export function NavigBar({ isLogged, logInHandler }) {
   return (
     <div className="NavigBar">
       <Navbar bg="light" variant="light">
@@ -22,7 +11,19 @@ export function NavigBar() {
           <Navbar.Brand href="#home">IS - Idea Sharing</Navbar.Brand>
         </Link>
         <Nav className="mr-auto"></Nav>
-        <Nav>{show()}</Nav>
+        <Nav>
+          {isLogged ? (
+            <Link to="/login">
+              <Button variant="primary">Sign in</Button>
+            </Link>
+          ) : (
+            <Link to="/">
+              <Button onClick={logInHandler} variant="primary">
+                Log out
+              </Button>
+            </Link>
+          )}
+        </Nav>
       </Navbar>
     </div>
   );

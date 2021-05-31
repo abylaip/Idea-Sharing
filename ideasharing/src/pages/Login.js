@@ -2,16 +2,13 @@ import React from "react";
 import "../assets/css/Login.css";
 import { Link } from "react-router-dom";
 
-export default function Login() {
-  function handleLoggedIn() {
-    localStorage.setItem("loggedIn", true);
-  }
+export default function Login({ logOutHandler }) {
   return (
     <div className="login">
       <div className="loginForm">
         <h1>Login</h1>
         <h5>Use your account to login</h5>
-        <input type="text" placeholder="Enter username" />
+        <input type="text" placeholder="Enter email" />
         <input type="password" placeholder="Enter password" />
         <br />
         <br />
@@ -19,7 +16,7 @@ export default function Login() {
           <button
             type="submit"
             className="login-button"
-            onClick={handleLoggedIn}
+            onClick={logOutHandler}
           >
             Sign in
           </button>

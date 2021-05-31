@@ -7,7 +7,7 @@ export default function Registration() {
     <div className="registration">
       <div className="registration-form">
         <h1>Registration</h1>
-        <input type="text" placeholder="Enter username" />
+        <input type="text" placeholder="Enter email" />
         <input type="password" placeholder="Enter password" />
         <input type="password" placeholder="Re-enter password" />
         <br />

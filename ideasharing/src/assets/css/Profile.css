@@ -17,21 +17,23 @@
   border-radius: 10px;
   width: 100%;
   margin-right: -10px;
-  padding: 10px;
+  padding-top: 10px;
 }
+
+.profile-right-non-main {
+  color: black;
+}
+.profile-right-main {
+  color: #9daab1;
+}
+
 .avatar {
   width: 160px;
   height: 160px;
   border-radius: 100px;
   margin-right: 10px;
 }
-.personal-info-each {
-  display: flex;
-  flex-direction: row;
-}
-p {
-  margin-right: 5px;
-}
+
 .profile-idea {
   text-align: left;
   background-color: #ffffff;
