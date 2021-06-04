@@ -24,14 +24,7 @@ export default function Profile() {
     <div className="profile-body">
       <div className="profile-main-info">
         <div className="profile-left">
-          <img
-            className="avatar"
-            src={
-              user.avatar
-                ? "http://localhost:3001" + user.avatar
-                : "https://bootdey.com/img/Content/avatar/avatar5.png"
-            }
-          />
+          <img className="avatar" src={user.avatar} />
           <h3>{user.fullname}</h3>
           <p className="profile-left-each">{user.position}</p>
           <p className="profile-left-each">{user.location}</p>

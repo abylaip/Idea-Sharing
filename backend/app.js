@@ -1,11 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const multer = require("multer");
-const path = require("path");
 const ideasRouter = require("./controllers/ideas");
 const loginRouter = require("./controllers/login");
 const usersRouter = require("./controllers/users");
-const authRouter = require("./controllers/auth");
+const authMiddleware = require("./controllers/auth");
+const uploadRouter = require("./controllers/upload");
 const cors = require("cors");
 const app = express();
 
@@ -27,8 +26,9 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use("/api/auth", loginRouter);
-app.use(authRouter);
-app.use("/api/users", express.static(__dirname + "/uploads"), usersRouter);
-app.use("/api/ideas", ideasRouter);
+app.use("/api/upload", uploadRouter);
+app.use("/api/users", authMiddleware, usersRouter);
+app.use("/api/ideas", authMiddleware, ideasRouter);
 module.exports = app;

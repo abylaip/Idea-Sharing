@@ -2,91 +2,91 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../assets/css/Settings.css";
 
+function buildAxios() {
+  return axios.create({
+    baseURL: "http://localhost:3001",
+    timeout: 1000,
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  });
+}
+
 export default function Settings() {
   const [user, setUser] = useState({});
-  const [ava, setAva] = useState();
-  const [fullname, setFullname] = useState("");
-  const [education, setEducation] = useState("");
-  const [email, setEmail] = useState("");
-  const [location, setLocation] = useState("");
-  const [skills, setSkills] = useState("");
-  const [position, setPosition] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState({
+    avatarUrl: "https://bootdey.com/img/Content/avatar/avatar5.png",
+    fullname: "",
+    education: "",
+    email: "",
+    location: "",
+    skills: "",
+    position: "",
+  });
 
   useEffect(() => {
-    console.log("effect");
-    const config = {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    };
-    axios
-      .get(`http://localhost:3001/api/users/info`, config)
+    console.log("effect: load");
+    buildAxios()
+      .get(`/api/users/info`)
       .then((response) => {
+        console.log("User loaded");
         console.log(response.data);
         setUser(response.data);
+        setForm({
+          avatarUrl: response.data.avatar,
+          fullname: response.data.fullname,
+          education: response.data.education,
+          email: response.data.email,
+          location: response.data.location,
+          skills: response.data.skills,
+          position: response.data.position,
+        });
       });
   }, []);
 
-  const handleFullnameChange = (event) => {
-    console.log(event.target.value);
-    setFullname(event.target.value);
+  const onAvatarChange = async (e) => {
+    console.log(e);
+    const file = e.target.files[0];
+
+    const formData = new FormData();
+    formData.append("avatar", file, file.name);
+    try {
+      const result = await buildAxios().post(`/api/upload/`, formData);
+      setForm(
+        Object.assign({}, form, {
+          avatarUrl: `http://localhost:3001/${result.data.path}`,
+        })
+      );
+    } catch (error) {
+      console.error(error);
+      alert("Failed to upload avatar");
+    }
   };
-  const handleEducationChange = (event) => {
-    console.log(event.target.value);
-    setEducation(event.target.value);
-  };
-  const handleEmailChange = (event) => {
-    console.log(event.target.value);
-    setEmail(event.target.value);
-  };
-  const handleLocationChange = (event) => {
-    console.log(event.target.value);
-    setLocation(event.target.value);
-  };
-  const handleSkillsChange = (event) => {
-    console.log(event.target.value);
-    setSkills(event.target.value);
-  };
-  const handlePositionChange = (event) => {
-    console.log(event.target.value);
-    setPosition(event.target.value);
-  };
-  const handlePasswordChange = (event) => {
-    console.log(event.target.value);
-    setPassword(event.target.value);
-  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const config = {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    };
     console.log(user.id);
-    axios
-      .post(
-        `http://localhost:3001/api/users/${user.id}`,
-        {
-          // avatar: ava,
-          // fullname: fullname,
-          education: education,
-          // email: email,
-          location: location,
-          // skills: skills,
-          position: position,
-          // password: password,
-        },
-        config
-      )
+    console.log(form);
+    buildAxios()
+      .put(`/api/users/${user._id}`, {
+        avatar: form.avatarUrl,
+        fullname: form.fullname,
+        education: form.education,
+        email: form.email,
+        location: form.location,
+        skills: form.skills,
+        position: form.position,
+      })
       .then((res) => {
         console.log("asd");
         console.log(res.data);
       })
       .catch((error) => {
+        console.error(error);
         alert("Something went wrong, write information correctly");
       });
   };
+
   return (
     <div className="settings-body">
       <div className="row justify-content-center">
@@ -109,15 +109,7 @@ export default function Settings() {
             </ul>
             <form>
               <div className="avatar-top row">
-                <img
-                  src={
-                    user.avatar
-                      ? "http://localhost:3001" + user.avatar
-                      : "https://bootdey.com/img/Content/avatar/avatar5.png"
-                  }
-                  alt="avatar"
-                  className="avatar-img"
-                />
+                <img src={form.avatarUrl} alt="avatar" className="avatar-img" />
 
                 <input
                   type="file"
@@ -125,6 +117,7 @@ export default function Settings() {
                   name="avatar-img"
                   accept="image/png, image/jpeg"
                   style={{ border: "none" }}
+                  onChange={onAvatarChange}
                   className="col-md-12"
                 ></input>
               </div>
@@ -136,8 +129,12 @@ export default function Settings() {
                     type="text"
                     name="fullname"
                     className="input-form-control"
-                    placeholder={user.fullname}
-                    onChange={handleFullnameChange}
+                    value={form.fullname}
+                    onChange={(e) =>
+                      setForm(
+                        Object.assign({}, form, { fullname: e.target.value })
+                      )
+                    }
                   />
                 </div>
                 <div className="form-group col-md-12">
@@ -145,8 +142,12 @@ export default function Settings() {
                   <input
                     type="text"
                     className="input-form-control"
-                    placeholder={user.education}
-                    onChange={handleEducationChange}
+                    value={form.education}
+                    onChange={(e) =>
+                      setForm(
+                        Object.assign({}, form, { education: e.target.value })
+                      )
+                    }
                   />
                 </div>
               </div>
@@ -155,8 +156,10 @@ export default function Settings() {
                 <input
                   type="email"
                   className="input-form-control"
-                  placeholder={user.email}
-                  onChange={handleEmailChange}
+                  value={form.email}
+                  onChange={(e) =>
+                    setForm(Object.assign({}, form, { email: e.target.value }))
+                  }
                 />
               </div>
               <div className="form-group">
@@ -164,8 +167,12 @@ export default function Settings() {
                 <input
                   type="text"
                   className="input-form-control"
-                  placeholder={user.location}
-                  onChange={handleLocationChange}
+                  value={form.location}
+                  onChange={(e) =>
+                    setForm(
+                      Object.assign({}, form, { location: e.target.value })
+                    )
+                  }
                 />
               </div>
               <div className="form-row">
@@ -174,16 +181,17 @@ export default function Settings() {
                   <input
                     type="text"
                     className="input-form-control"
-                    placeholder={user.skills}
-                    onChange={handleSkillsChange}
+                    value={form.skills}
+                    onChange={(e) =>
+                      setForm(
+                        Object.assign({}, form, { skills: e.target.value })
+                      )
+                    }
                   />
                 </div>
                 <div className="form-group col-md-6">
                   <label>Position</label>
-                  <select
-                    className="input-form-control"
-                    onChange={handlePositionChange}
-                  >
+                  <select className="input-form-control">
                     <option selected="">Choose...</option>
                     <option>Software Engineer</option>
                     <option>Enterpreneur</option>
@@ -204,11 +212,7 @@ export default function Settings() {
                   </div>
                   <div className="form-group">
                     <label>Confirm Password</label>
-                    <input
-                      type="password"
-                      className="input-form-control"
-                      onChange={handlePasswordChange}
-                    />
+                    <input type="password" className="input-form-control" />
                   </div>
                 </div>
                 <div className="col-md-6">
