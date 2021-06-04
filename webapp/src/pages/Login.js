@@ -3,10 +3,10 @@ import "../assets/css/Login.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-export default function Login({ logOutHandler }) {
+export default function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [path, setPath] = useState("");
+
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -21,19 +21,18 @@ export default function Login({ logOutHandler }) {
         password: password,
       })
       .then((res) => {
-        console.log("asd");
+        console.log("success");
+        console.log(res);
         localStorage.setItem("token", res.data.token);
         console.log(localStorage.getItem("token"));
-        console.log(res.data.token);
-        setPath("/main");
-        console.log(path);
-        logOutHandler();
+        onLogin();
       })
       .catch((error) => {
-        setPath("/login");
+        console.error(error);
         alert("Wrong email or password, try again!");
       });
   };
+
   return (
     <div className="login">
       <div className="loginForm">
@@ -59,9 +58,7 @@ export default function Login({ logOutHandler }) {
             className="btn login-button"
             onClick={handleSubmit}
           >
-            <Link to="/main" className="login-button">
-              Sign in
-            </Link>
+            Sign in
           </button>
           <br />
           <Link to="/registration">I don't have an account</Link>
