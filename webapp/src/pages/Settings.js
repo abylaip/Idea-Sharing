@@ -12,6 +12,7 @@ export default function Settings() {
   const [skills, setSkills] = useState("");
   const [position, setPosition] = useState("");
   const [password, setPassword] = useState("");
+
   useEffect(() => {
     console.log("effect");
     const config = {
@@ -26,6 +27,7 @@ export default function Settings() {
         setUser(response.data);
       });
   }, []);
+
   const handleFullnameChange = (event) => {
     console.log(event.target.value);
     setFullname(event.target.value);
