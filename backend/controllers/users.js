@@ -30,9 +30,13 @@ usersRouter.put("/:id", async (request, response, next) => {
   console.log(body);
   user.set({
     id: user.id,
+    fullname: body.fullname,
+    education: body.education,
+    email: body.email,
     location: body.location,
+    skills: body.skills,
+    position: body.position,
     avatar: body.avatar,
-    /// ...
   });
   await user.save();
   response.json(user);

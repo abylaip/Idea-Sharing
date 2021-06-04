@@ -191,7 +191,14 @@ export default function Settings() {
                 </div>
                 <div className="form-group col-md-6">
                   <label>Position</label>
-                  <select className="input-form-control">
+                  <select
+                    className="input-form-control"
+                    onChange={(e) =>
+                      setForm(
+                        Object.assign({}, form, { position: e.target.value })
+                      )
+                    }
+                  >
                     <option selected="">Choose...</option>
                     <option>Software Engineer</option>
                     <option>Enterpreneur</option>
