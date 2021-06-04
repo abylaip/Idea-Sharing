@@ -7,9 +7,15 @@ export function NavigBar({ isLogged, logInHandler }) {
   return (
     <div className="NavigBar">
       <Navbar bg="light" variant="light">
-        <Link to="/">
-          <Navbar.Brand href="#home">IS - Idea Sharing</Navbar.Brand>
-        </Link>
+        {isLogged ? (
+          <Link to="/">
+            <Navbar.Brand href="#home">IS - Idea Sharing</Navbar.Brand>
+          </Link>
+        ) : (
+          <Link to="/main">
+            <Navbar.Brand href="#home">IS - Idea Sharing</Navbar.Brand>
+          </Link>
+        )}
         <Nav className="mr-auto"></Nav>
         <Nav>
           {isLogged ? (

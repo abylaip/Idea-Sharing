@@ -1,21 +1,40 @@
-import React from "react";
-import Ava from "../assets/ava.jpeg";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../assets/css/Profile.css";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Profile() {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    console.log("effect");
+    const config = {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    };
+    axios
+      .get(`http://localhost:3001/api/users/info`, config)
+      .then((response) => {
+        console.log(response.data);
+        setUser(response.data);
+      });
+  }, []);
   return (
     <div className="profile-body">
       <div className="profile-main-info">
         <div className="profile-left">
           <img
             className="avatar"
-            src="https://bootdey.com/img/Content/avatar/avatar5.png"
+            src={
+              user.avatar
+                ? "http://localhost:3001" + user.avatar
+                : "https://bootdey.com/img/Content/avatar/avatar5.png"
+            }
           />
-          <h3>Abylay Aiyp</h3>
-          <p className="profile-left-each">Software Engineer</p>
-          <p className="profile-left-each">Almaty, Kazakhstan</p>
+          <h3>{user.fullname}</h3>
+          <p className="profile-left-each">{user.position}</p>
+          <p className="profile-left-each">{user.location}</p>
           <Link to="/settings">
             <button
               style={{
@@ -36,7 +55,7 @@ export default function Profile() {
                 <p className="profile-right-non-main">Fullname:</p>
               </td>
               <td>
-                <p className="profile-right-main">Abylay Aiyp</p>
+                <p className="profile-right-main">{user.fullname}</p>
               </td>
             </tr>
             <tr>
@@ -44,9 +63,7 @@ export default function Profile() {
                 <p className="profile-right-non-main">Education: </p>
               </td>
               <td>
-                <p className="profile-right-main">
-                  Massachusets Institute of Technology
-                </p>
+                <p className="profile-right-main">{user.education}</p>
               </td>
             </tr>
             <tr>
@@ -54,7 +71,7 @@ export default function Profile() {
                 <p className="profile-right-non-main">Location: </p>
               </td>
               <td>
-                <p className="profile-right-main">Kazakhstan, Almaty</p>
+                <p className="profile-right-main">{user.location}</p>
               </td>
             </tr>
             <tr>
@@ -62,7 +79,7 @@ export default function Profile() {
                 <p className="profile-right-non-main">Position: </p>
               </td>
               <td>
-                <p className="profile-right-main">Software Developer</p>
+                <p className="profile-right-main">{user.position}</p>
               </td>
             </tr>
             <tr>
@@ -70,7 +87,7 @@ export default function Profile() {
                 <p className="profile-right-non-main">Skills: </p>
               </td>
               <td>
-                <p className="profile-right-main">Full-stack developer</p>
+                <p className="profile-right-main">{user.skills}</p>
               </td>
             </tr>
           </table>

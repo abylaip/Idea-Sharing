@@ -1,23 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import "../assets/css/Registration.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Registration() {
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleChangeName = (event) => {
+    setFullname(event.target.value);
+  };
+  const handleChangeEmail = (event) => {
+    setEmail(event.target.value);
+  };
+  const handleChangePassword = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("asdasd");
+    axios
+      .post(`http://localhost:3001/api/auth/`, {
+        fullname: fullname,
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      });
+  };
+
   return (
     <div className="registration">
       <div className="registration-form">
         <h1>Registration</h1>
-        <input type="text" placeholder="Enter email" />
-        <input type="password" placeholder="Enter password" />
-        <input type="password" placeholder="Re-enter password" />
-        <br />
-        <br />
-        <Link to="/login">
-          <button type="submit" className="registration-button">
-            Register
+        <form>
+          <input
+            type="text"
+            name="fullname"
+            placeholder="Enter full-name"
+            onChange={handleChangeName}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            onChange={handleChangeEmail}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            onChange={handleChangePassword}
+          />
+          <br />
+          <br />
+          <button
+            type="submit"
+            className="btn registration-button"
+            onClick={handleSubmit}
+          >
+            <Link to="/login" className="registration-button">
+              Register
+            </Link>
           </button>
-        </Link>
-        <br />
+          <br />
+        </form>
       </div>
     </div>
   );

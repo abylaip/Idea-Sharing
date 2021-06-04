@@ -1,7 +1,90 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../assets/css/Settings.css";
 
 export default function Settings() {
+  const [user, setUser] = useState({});
+  const [ava, setAva] = useState();
+  const [fullname, setFullname] = useState("");
+  const [education, setEducation] = useState("");
+  const [email, setEmail] = useState("");
+  const [location, setLocation] = useState("");
+  const [skills, setSkills] = useState("");
+  const [position, setPosition] = useState("");
+  const [password, setPassword] = useState("");
+  useEffect(() => {
+    console.log("effect");
+    const config = {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    };
+    axios
+      .get(`http://localhost:3001/api/users/info`, config)
+      .then((response) => {
+        console.log(response.data);
+        setUser(response.data);
+      });
+  }, []);
+  const handleFullnameChange = (event) => {
+    console.log(event.target.value);
+    setFullname(event.target.value);
+  };
+  const handleEducationChange = (event) => {
+    console.log(event.target.value);
+    setEducation(event.target.value);
+  };
+  const handleEmailChange = (event) => {
+    console.log(event.target.value);
+    setEmail(event.target.value);
+  };
+  const handleLocationChange = (event) => {
+    console.log(event.target.value);
+    setLocation(event.target.value);
+  };
+  const handleSkillsChange = (event) => {
+    console.log(event.target.value);
+    setSkills(event.target.value);
+  };
+  const handlePositionChange = (event) => {
+    console.log(event.target.value);
+    setPosition(event.target.value);
+  };
+  const handlePasswordChange = (event) => {
+    console.log(event.target.value);
+    setPassword(event.target.value);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const config = {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    };
+    console.log(user.id);
+    axios
+      .post(
+        `http://localhost:3001/api/users/${user.id}`,
+        {
+          // avatar: ava,
+          // fullname: fullname,
+          education: education,
+          // email: email,
+          location: location,
+          // skills: skills,
+          position: position,
+          // password: password,
+        },
+        config
+      )
+      .then((res) => {
+        console.log("asd");
+        console.log(res.data);
+      })
+      .catch((error) => {
+        alert("Something went wrong, write information correctly");
+      });
+  };
   return (
     <div className="settings-body">
       <div className="row justify-content-center">
@@ -25,7 +108,11 @@ export default function Settings() {
             <form>
               <div className="avatar-top row">
                 <img
-                  src="https://bootdey.com/img/Content/avatar/avatar5.png"
+                  src={
+                    user.avatar
+                      ? "http://localhost:3001" + user.avatar
+                      : "https://bootdey.com/img/Content/avatar/avatar5.png"
+                  }
                   alt="avatar"
                   className="avatar-img"
                 />
@@ -42,55 +129,59 @@ export default function Settings() {
               <hr className="my-4" />
               <div className="form-row">
                 <div className="form-group col-md-12">
-                  <label for="fullname">Full name</label>
+                  <label>Full name</label>
                   <input
                     type="text"
-                    id="fullname"
+                    name="fullname"
                     className="input-form-control"
-                    placeholder="Abylay Aiyp"
+                    placeholder={user.fullname}
+                    onChange={handleFullnameChange}
                   />
                 </div>
                 <div className="form-group col-md-12">
-                  <label for="lastname">Education</label>
+                  <label>Education</label>
                   <input
                     type="text"
-                    id="education"
                     className="input-form-control"
-                    placeholder="MIT"
+                    placeholder={user.education}
+                    onChange={handleEducationChange}
                   />
                 </div>
               </div>
               <div className="form-group">
-                <label for="inputEmail4">Email</label>
+                <label>Email</label>
                 <input
                   type="email"
                   className="input-form-control"
-                  id="inputEmail4"
-                  placeholder="Abylay@Aiyp.me"
+                  placeholder={user.email}
+                  onChange={handleEmailChange}
                 />
               </div>
               <div className="form-group">
-                <label for="location">Location</label>
+                <label>Location</label>
                 <input
                   type="text"
                   className="input-form-control"
-                  id="location"
-                  placeholder="Almaty, Kazakhstan"
+                  placeholder={user.location}
+                  onChange={handleLocationChange}
                 />
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label for="skills">Skills</label>
+                  <label>Skills</label>
                   <input
                     type="text"
                     className="input-form-control"
-                    id="skills"
-                    placeholder="Full-Stack Developer"
+                    placeholder={user.skills}
+                    onChange={handleSkillsChange}
                   />
                 </div>
                 <div className="form-group col-md-6">
-                  <label for="position">Position</label>
-                  <select id="position" className="input-form-control">
+                  <label>Position</label>
+                  <select
+                    className="input-form-control"
+                    onChange={handlePositionChange}
+                  >
                     <option selected="">Choose...</option>
                     <option>Software Engineer</option>
                     <option>Enterpreneur</option>
@@ -102,27 +193,19 @@ export default function Settings() {
               <div className="row mb-4">
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label for="inputPassword4">Old Password</label>
-                    <input
-                      type="password"
-                      className="input-form-control"
-                      id="inputPassword5"
-                    />
+                    <label>Old Password</label>
+                    <input type="password" className="input-form-control" />
                   </div>
                   <div className="form-group">
-                    <label for="inputPassword5">New Password</label>
-                    <input
-                      type="password"
-                      className="input-form-control"
-                      id="inputPassword5"
-                    />
+                    <label>New Password</label>
+                    <input type="password" className="input-form-control" />
                   </div>
                   <div className="form-group">
-                    <label for="inputPassword6">Confirm Password</label>
+                    <label>Confirm Password</label>
                     <input
                       type="password"
                       className="input-form-control"
-                      id="inputPassword6"
+                      onChange={handlePasswordChange}
                     />
                   </div>
                 </div>
@@ -140,7 +223,9 @@ export default function Settings() {
                   </ul>
                 </div>
               </div>
-              <button className="save-button">Save Change</button>
+              <button className="save-button" onClick={handleSubmit}>
+                Save Change
+              </button>
             </form>
           </div>
         </div>

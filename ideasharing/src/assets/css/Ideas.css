@@ -8,3 +8,14 @@
 .cnct-btn {
   margin-right: 5px;
 }
+.tooltip-table {
+  padding: 0;
+}
+
+.tooltip-table tr {
+  padding: 0;
+}
+
+.tooltip-table tr td {
+  padding: 0;
+}

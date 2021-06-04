@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { InputGroup, FormControl, Button } from "react-bootstrap";
+import {
+  InputGroup,
+  FormControl,
+  Button,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import "../assets/css/Ideas.css";
 import ModalMoreInfo from "../components/ModalMoreInfo";
 
@@ -28,6 +34,29 @@ export default function Ideas() {
           variety of stand-alone and built-in social-media services currently
           available, there are some common features:[2]
         </p>
+        <OverlayTrigger
+          key={"top"}
+          placement={"top"}
+          overlay={
+            <Tooltip id={`tooltip-${"top"}`}>
+              <table className="tooltip-table">
+                <tbody>
+                  <tr>
+                    <td>Azamat M</td>
+                  </tr>
+                  <tr>
+                    <td>Azamat M</td>
+                  </tr>
+                </tbody>
+              </table>
+            </Tooltip>
+          }
+        >
+          <Button variant="secondary">15 people connected</Button>
+        </OverlayTrigger>
+
+        <br />
+        <br />
         <Button variant="dark" className="cnct-btn">
           Connect
         </Button>
