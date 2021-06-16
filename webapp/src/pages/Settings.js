@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Alert } from "react-bootstrap";
 import "../assets/css/Settings.css";
 
 function buildAxios() {
@@ -23,6 +24,7 @@ export default function Settings() {
     skills: "",
     position: "",
   });
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     console.log("effect: load");
@@ -65,6 +67,7 @@ export default function Settings() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setShow(true);
     console.log(user.id);
     console.log(form);
     buildAxios()
@@ -80,11 +83,19 @@ export default function Settings() {
       .then((res) => {
         console.log("asd");
         console.log(res.data);
+        window.setted = true;
       })
       .catch((error) => {
         console.error(error);
         alert("Something went wrong, write information correctly");
       });
+    const timeId = setTimeout(() => {
+      setShow(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
   };
 
   return (
@@ -98,7 +109,6 @@ export default function Settings() {
                   className="nav-link active"
                   id="home-tab"
                   data-toggle="tab"
-                  href="#home"
                   role="tab"
                   aria-controls="home"
                   aria-selected="false"
@@ -182,11 +192,11 @@ export default function Settings() {
                     type="text"
                     className="input-form-control"
                     value={form.skills}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setForm(
                         Object.assign({}, form, { skills: e.target.value })
-                      )
-                    }
+                      );
+                    }}
                   />
                 </div>
                 <div className="form-group col-md-6">
@@ -243,6 +253,17 @@ export default function Settings() {
           </div>
         </div>
       </div>
+      <Alert
+        variant="success"
+        style={{
+          opacity: show ? "1" : "0",
+          position: "absolute",
+          width: "1035px",
+          top: "1300px",
+        }}
+      >
+        Your data has been successfully saved!
+      </Alert>
     </div>
   );
 }

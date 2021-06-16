@@ -1,39 +1,42 @@
 const mongoose = require("mongoose");
 
-const ideaSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  content: {
-    type: String,
-    reqiured: true,
-    minlength: 5,
-  },
-  author: {
-    type: String,
-    required: true,
-  },
-  connections: {
-    type: Number,
-  },
-  createdAt: {
-    type: Date,
-  },
-  updatedAt: {
-    type: Date,
-  },
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
-  connectedUsers: [
-    {
+const ideaSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      reqiured: true,
+      minlength: 5,
+    },
+    author: {
+      type: String,
+      required: true,
+    },
+    connections: {
+      type: Number,
+    },
+    createdAt: {
+      type: Date,
+    },
+    updatedAt: {
+      type: Date,
+    },
+    createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-  ],
-});
+    connectedUsers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 ideaSchema.set("toJSON", {
   transform: (document, returnedObject) => {

@@ -66,17 +66,4 @@ usersRouter.put("/password/:id", async (request, response, next) => {
   response.json(user);
 });
 
-// usersRouter.get("/info/:id", async (request, reponse, next) => {
-//   try {
-//     const user = await User.findById(request.params.id);
-//     if (user) {
-//       response.json(user);
-//     } else {
-//       response.status(404).end();
-//     }
-//   } catch (error) {
-//     response.json("error", error);
-//   }
-// });
-
 module.exports = usersRouter;

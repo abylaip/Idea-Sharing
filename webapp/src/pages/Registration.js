@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Registration() {
+  window.signed = false;
+  window.setted = false;
+  console.log(window.signed);
+  console.log(window.setted);
+
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,6 +33,7 @@ export default function Registration() {
       .then((res) => {
         console.log(res);
         console.log(res.data);
+        window.signed = true;
       });
   };
 

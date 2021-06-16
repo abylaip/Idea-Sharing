@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/css/ModalMoreInfo.css";
 
-export default function ModalMoreInfo({ show, hide }) {
+export default function ModalMoreInfo({ show, hide, user }) {
   return (
     <div
       className="modal-more-info"
@@ -18,19 +18,19 @@ export default function ModalMoreInfo({ show, hide }) {
           <table className="modal-table">
             <tr>
               <th>Full name:</th>
-              <th>Zhandos Abdireshov</th>
+              <th>{user.fullname}</th>
             </tr>
             <tr>
               <td>Email:</td>
-              <td>dodos@gmail.com</td>
+              <td>{user.email}</td>
             </tr>
             <tr>
               <td>Position:</td>
-              <td>Data Scientist</td>
+              <td>{user.position}</td>
             </tr>
             <tr>
               <td>Location:</td>
-              <td>Almaty, Kazakhstan</td>
+              <td>{user.location}</td>
             </tr>
           </table>
         </div>

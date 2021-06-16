@@ -1,27 +1,129 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Moment from "moment";
 import "../assets/css/Profile.css";
-import { InputGroup, FormControl, Button } from "react-bootstrap";
+import {
+  Alert,
+  InputGroup,
+  FormControl,
+  Button,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+function buildAxios() {
+  return axios.create({
+    baseURL: "http://localhost:3001",
+    timeout: 1000,
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  });
+}
 
 export default function Profile() {
   const [user, setUser] = useState({});
+  const [ideas, setIdeas] = useState([]);
+  const [submitTitle, setSubmitTitle] = useState("");
+  const [submitContent, setSubmitContent] = useState("");
+  const [newIdea, setNewIdea] = useState({});
+  const [show, setShow] = useState(false);
+
   useEffect(() => {
-    console.log("effect");
-    const config = {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    };
-    axios
-      .get(`http://localhost:3001/api/users/info`, config)
+    console.log("effect: loaded");
+    buildAxios()
+      .get(`/api/users/info`)
       .then((response) => {
         console.log(response.data);
         setUser(response.data);
       });
+
+    buildAxios()
+      .get(`/api/ideas/`)
+      .then((response) => {
+        console.log("Ideas loaded");
+        setIdeas(response.data);
+      });
   }, []);
+
+  const ideaForm = (author, postedDate, title, content, connectedUsers) => {
+    const date = Moment(postedDate).format("DD-MM-YYYY");
+    return (
+      <div className="profile-idea">
+        <h4>{author}</h4>
+        <p>{date}</p>
+        <h4>{title}</h4>
+        <p>{content}</p>
+        <OverlayTrigger
+          key={"top"}
+          placement={"top"}
+          overlay={
+            <Tooltip id={`tooltip-${"top"}`}>
+              <table className="tooltip-table">
+                <tbody>
+                  {connectedUsers.map((connectedUser) => {
+                    console.log(connectedUser.fullname);
+                    return (
+                      <tr>
+                        <td>{connectedUser.fullname}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </Tooltip>
+          }
+        >
+          <Button variant="secondary">
+            {0 | connectedUsers.length} people connected
+          </Button>
+        </OverlayTrigger>
+      </div>
+    );
+  };
+
+  const handleSubmitIdea = () => {
+    buildAxios()
+      .post(`/api/ideas/`, {
+        title: submitTitle,
+        content: submitContent,
+      })
+      .then((response) => {
+        setNewIdea(response.data);
+        console.log(newIdea);
+        buildAxios()
+          .get(`/api/ideas/`)
+          .then((res) => {
+            console.log("Ideas loaded");
+            setIdeas(res.data);
+          });
+      });
+    setShow(true);
+    setSubmitTitle("");
+    setSubmitContent("");
+    const timeId = setTimeout(() => {
+      setShow(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  };
+
   return (
     <div className="profile-body">
+      <Alert
+        variant="success"
+        style={{
+          opacity: show ? "1" : "0",
+          position: "absolute",
+          width: "1035px",
+          top: "630px",
+        }}
+      >
+        Your idea has been successfully submitted. Develop your creativity!
+      </Alert>
       <div className="profile-main-info">
         <div className="profile-left">
           <img className="avatar" src={user.avatar} />
@@ -90,37 +192,46 @@ export default function Profile() {
         <InputGroup className="mb-3">
           <FormControl
             aria-label="Title"
+            name="title"
+            value={submitTitle}
             aria-describedby="inputGroup-sizing-default"
             placeholder="Title"
+            onChange={(e) => setSubmitTitle(e.target.value)}
           />
         </InputGroup>
         <InputGroup size="sm">
           <InputGroup.Prepend>
             <InputGroup.Text>Description</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl as="textarea" aria-label="Description" />
+          <FormControl
+            as="textarea"
+            value={submitContent}
+            name="description"
+            aria-label="Description"
+            onChange={(e) => setSubmitContent(e.target.value)}
+          />
         </InputGroup>
         <br />
-        <Button variant="success" size="lg" block style={{ width: 200 }}>
+        <Button
+          variant="success"
+          size="lg"
+          block
+          style={{ width: 200 }}
+          onClick={handleSubmitIdea}
+        >
           Submit idea
         </Button>
       </div>
       <div className="profile-ideas">
-        <div className="profile-idea">
-          <h4>Abylay Aiyp</h4>
-          <p>14.05.2021</p>
-          <h4>GPS System</h4>
-          <p>
-            The Global Positioning System (GPS), originally Navstar GPS,[1] is a
-            satellite-based radionavigation system owned by the United States
-            government and operated by the United States Space Force.[2] It is
-            one of the global navigation satellite systems (GNSS) that provides
-            geolocation and time information to a GPS receiver anywhere on or
-            near the Earth where there is an unobstructed line of sight to four
-            or more GPS satellites.[3] Obstacles such as mountains and buildings
-            block the relatively weak GPS signals.
-          </p>
-        </div>
+        {ideas.map((idea) =>
+          ideaForm(
+            idea.author,
+            idea.createdAt,
+            idea.title,
+            idea.content,
+            idea.connectedUsers
+          )
+        )}
       </div>
     </div>
   );

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "../assets/css/Login.css";
 import { Link } from "react-router-dom";
+import { Alert } from "react-bootstrap";
 import axios from "axios";
 
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState(false);
 
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -25,16 +27,25 @@ export default function Login({ onLogin }) {
         console.log(res);
         localStorage.setItem("token", res.data.token);
         console.log(localStorage.getItem("token"));
+        setLoginError(false);
         onLogin();
       })
       .catch((error) => {
         console.error(error);
-        alert("Wrong email or password, try again!");
+        setLoginError(true);
       });
   };
 
   return (
     <div className="login">
+      {
+        <Alert
+          variant="danger"
+          style={{ opacity: loginError ? "1" : "0", width: "100%" }}
+        >
+          Wrong email or passowrd. Please try again!
+        </Alert>
+      }
       <div className="loginForm">
         <form>
           <h1>Login</h1>

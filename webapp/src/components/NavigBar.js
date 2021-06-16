@@ -7,16 +7,23 @@ export function NavigBar({ isLogged, onLogOut }) {
   return (
     <div className="NavigBar">
       <Navbar bg="light" variant="light">
-        {isLogged ? (
-          <Link to="/">
-            <Navbar.Brand href="#home">IS - Idea Sharing</Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand>IS - Idea Sharing</Navbar.Brand>
+        </Link>
+
+        <Nav.Link>
+          <Link className="inactive" to="/about">
+            About us
           </Link>
-        ) : (
-          <Link to="/main">
-            <Navbar.Brand href="#home">IS - Idea Sharing</Navbar.Brand>
+        </Nav.Link>
+        <Nav.Link>
+          <Link className="inactive" to="/contacts">
+            Contacts
           </Link>
-        )}
+        </Nav.Link>
+
         <Nav className="mr-auto"></Nav>
+
         <Nav>
           {isLogged ? (
             <Link to="/">

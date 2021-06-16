@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import Main from "./pages/Main";
 import { NavigBar } from "./components/NavigBar";
+import AboutUs from "./pages/AboutUs";
+import Contacts from "./pages/Contacts";
 
 function App() {
   const history = useHistory();
@@ -23,6 +25,8 @@ function App() {
       <NavigBar isLogged={logged} onLogOut={onLogOut} />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/about" component={AboutUs} />
+        <Route path="/contacts" component={Contacts} />
         <Route path="/login" component={() => <Login onLogin={onLogin} />} />
         <Route path="/registration" component={Registration} />
         <Route path="/main" component={Main} />
